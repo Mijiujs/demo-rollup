@@ -6,34 +6,51 @@ cjs：node默认的模块规范，可用webpack加载
 umd：兼容iife、amd、cjs三种模块规范
 es：es module规范，可用webpack，rollup加载
 
-### CommonJS
+### CommonJS （2009）
 导出使用module.exports、exports，加载模块使用require('xxx')
 exports对象实际上只是对module.exports的引用
 
+### es module（2015）
+
 ### AMD（异步模块定义 requireJS 2010）
-AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。
+AMD是requireJS在推广过程中对模块定义的规范化产出。
 浏览器端的解决方案
-AMD推崇依赖前置
+AMD推崇依赖前置，只有当全部加载完毕后，才会执行后边的回调函数
 ```
-define(['./a', './b'], function (a, b) {
-  a.doSomething()
-  b.doSomething()
+定义模块
+define(moduleName, [module], factory) {
+  return {};
+}
+引入模块
+require([module],callback);
+
+require.config({
+  pahts: {
+    moduleA: 'js/moduleA',
+    moduleB: 'js/moduleB'
+  }
 })
+
+require(['moduleA', 'moduleB'], function (moduleA, moduleB) {})
 ```
 
 ### CMD （通用模块定义 seaJS 2011）
-CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
+CMD 是 seaJS 在推广过程中对模块定义的规范化产出。
 浏览器端的解决方案
-CMD推崇依赖就近
+CMD推崇就近依赖
 ```
+定义模块
 define(function (require, exports, module) {
   var a = require('./a') 
   a.doSomething()
   var b = require('./b')  
   b.doSomething()
-  // ... 
+  return {}
 })
 ```
+
+### UMD
+UMD是AMD和CommonJS的结合,AMD适用浏览器，CommonJS适用服务端，如果结合了两者就达到了跨平台的解决方案。UMD先判断是否支持AMD（define是否存在），存在用AMD模块的方式加载模块，再判断是否支持NodeJS的模块（exports是否存在），存在用NodeJS模块的方式，否则挂在window上，当全局变量使用。
 
 ### ES Module与CommonJS
 CommonJS模块是对象，是运行时加载，运行时才把模块挂载在exports之上（加载整个模块的所有），加载模块其实就是查找对象属性。
