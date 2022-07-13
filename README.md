@@ -1,6 +1,7 @@
 # rollup-demo
+
 ### 输出格式
-iife：自执行函数，通过<script>标签加载
+iife：自执行函数，通过script标签加载
 amd：异步模块定义，可通过requirejs加载
 cjs：node默认的模块规范，可用webpack加载
 umd：兼容iife、amd、cjs三种模块规范
