@@ -9,7 +9,7 @@ export default {
   output: [
     {
       file: 'lib/index.js',
-      format: 'cjs', // 五种输出格式：amd、es6、iife、umd、cjs
+      format: 'cjs', // 输出格式：amd、cjs、es、system、es、iife、umd
       // name: 'A', // 当format为iife和umd时必须提供，将作为全局变量挂在window下
       // sourcemap: true, // 生成soucemap文件方便调试
     },

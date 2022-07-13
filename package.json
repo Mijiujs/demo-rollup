@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "node test.js",
-    "rollup_cjs": "rollup -c"
+    "rollup": "rollup -c"
   },
   "repository": {
     "type": "git",
